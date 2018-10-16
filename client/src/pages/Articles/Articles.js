@@ -23,13 +23,17 @@ import {
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 
 const jumbotronStyle = {
-    background: 'black',
-    color: 'grey'
+    background: '#00c2ff',
+    color: 'white',
+    marginLeft: "20%", marginRight: "20%"
 };
 
 
 class Articles extends Component {
     state = {
+        savedArticles: [],
+        scrapedArticles: []
+
     };
 
     componentDidMount() {
@@ -37,21 +41,29 @@ class Articles extends Component {
     }
 
     loadArticles = () => {
-        API.getArticles()
+        API.getSavedArticles()
             .then(res =>
                 console.log(`this.setState({ books: res.data, title: "", author: "", synopsis: "" })`)
             )
             .catch(err => console.log(err));
     };
 
+    searchNYT = () => {
+        API.getNewArticles()
+        .then(res => {
+            console.log("***** got back the following from the API call to get artciles: \n" + JSON.stringify(res))
+        })
+        .catch(err => console.log(err));
+    }
 
     render() {
         return (
-            <div style={{ background: "white"}}>
-                <Jumbotron style={jumbotronStyle}>
+            <div style={{ background: "#ffffff"}}>
+                <Jumbotron style={jumbotronStyle} className="jumbotron-fluid">
                     <h1 align="center"><u>New York Times Scraper</u></h1>
                     <h3 align="center">Search for and save articles of interest!</h3>
                 </Jumbotron>
+                {/* <hr style={{ border: "3px double #8c8b8b", marginLeft: "5%", marginRight: "5%"}}></hr> */}
 
                 <Card style={{ marginLeft: "20%", marginRight: "20%", backgroundColor: 'black', color: 'white' }}>
                     <CardBody>
@@ -68,7 +80,7 @@ class Articles extends Component {
                                 <Label for="endYear">End Year</Label>
                                 <Input type="input" className="form-control" id="endYear" placeholder="2018"></Input>
                             </FormGroup>
-                            <Button type="submit" className="btn btn-success text-center">Submit</Button>
+                            <Button type="submit" onClick={this.searchNYT()} className="btn btn-success text-center">Submit</Button>
                         </Form>
                     </CardBody>
                 </Card>
