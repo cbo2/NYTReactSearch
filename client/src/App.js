@@ -11,8 +11,11 @@ import './App.css';
 //         <header className="App-header">
 //         </header>
 //         <Router>
-//           <Route exact path="/" component={Articles} />
+//           <Switch>
+//             <Route exact path="/" component={Articles} />
+//           </Switch>
 //         </Router>
+
 //       </div>
 //     );
 //   }
