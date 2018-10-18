@@ -58,9 +58,12 @@ class Articles extends Component {
                 title: this.state.scrapedArticles[index].title,
                 url: this.state.scrapedArticles[index].url
             })
-            .then(res =>
+            .then(res => {
+                let articles = this.state.scrapedArticles
+                articles.splice(index, 1)  // remove the article from the search list since we just added it to the saved list
+                this.setState({ scrapedArticles: articles})
                 this.loadArticles()
-            )
+            })
             .catch(err => console.log(err));
     };
 
