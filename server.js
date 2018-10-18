@@ -1,10 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");  // needed?
-// let logger = require("morgan");
 const routes = require("./routes");
 const mongoose = require("mongoose");
 const axios = require("axios");
-// const cheerio = require("cheerio");
 
 
 let PORT = process.env.PORT || 3001;
