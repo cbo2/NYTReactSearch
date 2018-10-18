@@ -17,12 +17,13 @@ export default {
   saveArticle: function (articleData) {
     return axios.post("/api/articles", articleData);
   },
-  getNewArticles: () => {
+  getNewArticles: (searchFormData) => {
+    // use destructuring to "map" the keys from the searchFormData object into the individual variables
+    const { searchTopic, startYear, endYear } = searchFormData
+    console.log(`passed in items are: ${searchTopic}, ${startYear}, ${endYear}`)
     const apiKey = "4b2365b52e4e4dc98d5c8c0eea51fda7"
-    let searchTerm = "saudi"
-    let beginDate = "20180101"
-    let endDate = "20181231"
-    let url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${apiKey}&q=${searchTerm}&begin-date=${beginDate}&end_date=${endDate}`
+    // use the parameter &fl=5 to limit the results to 5 articles
+    const url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${apiKey}&q=${searchTopic}&begin-date=${startYear}0101&end_date=${endYear}1231`
     return axios.get(url)
   }
 

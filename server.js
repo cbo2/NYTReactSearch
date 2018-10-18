@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");  // needed?
 const routes = require("./routes");
 const mongoose = require("mongoose");
 const axios = require("axios");
-const cheerio = require("cheerio");
+// const cheerio = require("cheerio");
 
 
 let PORT = process.env.PORT || 3001;
@@ -21,7 +21,7 @@ app.use(express.json());
 // app.use(logger("dev"));
 // axios used as a request
 app.set('axios', axios);
-app.set('cheerio', cheerio);
+// app.set('cheerio', cheerio);
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
 // Use express.static to serve the public folder as a static directory

@@ -2,8 +2,8 @@ import React from "react";
 
 const SavedItem = props => (
     <span>
-        <a href='#'>Full Story</a>
-        <button type="button" class="btn btn-danger save-article float-right">Remove Article</button>
+        <a href={props.url}>{props.title}</a>
+        <button type="button" className="btn btn-danger save-article float-right" onClick={props.onClick}>Remove Article</button>
         {props.children}
     </span>
 );
