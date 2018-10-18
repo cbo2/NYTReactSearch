@@ -56,7 +56,8 @@ class Articles extends Component {
         API.saveArticle(
             {
                 title: this.state.scrapedArticles[index].title,
-                url: this.state.scrapedArticles[index].url
+                url: this.state.scrapedArticles[index].url,
+                date: this.state.scrapedArticles[index].date
             })
             .then(res => {
                 let articles = this.state.scrapedArticles
@@ -88,8 +89,8 @@ class Articles extends Component {
                 console.log("***** got back the following from the API call to get artciles: \n" + JSON.stringify(res))
                 res.data.response.docs.map((doc, index) => {
                     if (index < 5) {
-                        console.log(`===> ${doc.snippet}  :  ${doc.web_url}`)
-                        newArticles.push({ title: doc.snippet, url: doc.web_url })
+                        console.log(`===> ${doc.snippet}  :  ${doc.web_url} : ${doc.pub_date}`)
+                        newArticles.push({ title: doc.snippet, url: doc.web_url, date: doc.pub_date })
                     }
                 })
                 this.setState({ scrapedArticles: newArticles })
