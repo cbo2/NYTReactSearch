@@ -24,8 +24,9 @@ import {
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 
 const jumbotronStyle = {
-    background: '#00c2ff',
-    color: 'white',
+    // background: '#00c2ff',
+    backgroundImage: `url("/images/newspaper.jpg")`,
+    color: 'black',
     marginLeft: "20%", marginRight: "20%"
 };
 
@@ -131,7 +132,7 @@ class Articles extends Component {
                                 <Label for="endYear">End Year</Label>
                                 <Input type="input" className="form-control" name="endYear" value={this.state.endYear} onChange={this.handleInputChange} placeholder="example...2018"></Input>
                             </FormGroup>
-                            <Button type="submit" onClick={this.handleSearchSubmit} className="btn btn-success text-center">Submit</Button>
+                            <Button type="submit" onClick={this.handleSearchSubmit} className="btn btn-outline-light text-center">Submit</Button>
                         </Form>
                     </CardBody>
                 </Card>
@@ -155,10 +156,6 @@ class Articles extends Component {
                         </CardBody>
                     ))}
                 </Card>
-
-
-
-                <div>We should have loaded the Articles by hitting the back end route by now!</div>
             </div>
         );
     }
