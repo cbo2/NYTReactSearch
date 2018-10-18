@@ -4,11 +4,6 @@ import SavedItem from "../../components/SavedItem";
 import API from "../../utils/API";
 import './Articles.css';
 import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
     Jumbotron,
     Form,
     Input,
@@ -138,7 +133,7 @@ class Articles extends Component {
                 </Card>
                 <br></br>
 
-                <Card style={{ marginLeft: "10%", marginRight: "10%", backgroundColor: 'black', color: 'white' }}>
+                <Card style={{ marginLeft: "10%", marginRight: "10%", backgroundColor: 'black', color: 'grey' }}>
                     <h3 align="center">Search Results</h3>
                     {this.state.scrapedArticles.map((article, index) => (
                         <CardBody key={index}>
@@ -148,7 +143,7 @@ class Articles extends Component {
                 </Card>
                 <br></br>
 
-                <Card style={{ marginLeft: "10%", marginRight: "10%", backgroundColor: 'black', color: 'white' }}>
+                <Card style={{ marginLeft: "10%", marginRight: "10%", backgroundColor: 'black', color: 'grey' }}>
                     <h3 align="center">Saved Articles</h3>
                     {this.state.savedArticles.map(article => (
                         <CardBody key={article._id}>
