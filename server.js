@@ -15,13 +15,12 @@ let app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Use winston logger for logging requests
-// app.use(logger("dev"));
 // axios used as a request
 app.set('axios', axios);
-// app.set('cheerio', cheerio);
+
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
+
 // Use express.static to serve the public folder as a static directory
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));

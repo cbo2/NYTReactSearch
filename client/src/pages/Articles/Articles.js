@@ -13,10 +13,6 @@ import {
     Card,
     CardBody
 } from "reactstrap";
-// import { Link } from "react-router-dom";
-// import { Col, Row, Container } from "../../components/Grid";
-// import { List, ListItem } from "../../components/List";
-// import { Input, TextArea, FormBtn } from "../../components/Form";
 
 const jumbotronStyle = {
     // background: '#00c2ff',
@@ -28,17 +24,18 @@ const jumbotronStyle = {
 
 class Articles extends Component {
     state = {
-        savedArticles: [],
-        scrapedArticles: [],
-        searchTopic: "",
-        startYear: "",
-        endYear: ""
+        savedArticles: [],     // the articles that have been saved
+        scrapedArticles: [],   // the articles that came back from the NYT api call
+        searchTopic: "",       // the search term from the dom
+        startYear: "",         // the start year from the dom
+        endYear: ""            // the end year from the dom
     };
 
     componentDidMount() {
         this.loadArticles();
     }
 
+    // load the articles from the mongo db
     loadArticles = () => {
         API.getSavedArticles()
             .then(res =>
@@ -47,6 +44,7 @@ class Articles extends Component {
             .catch(err => console.log(err));
     };
 
+    // save one article indicated by the arg passed in
     saveArticle = index => {
         console.log(`*** in savedArticle, the value of scrapedArticles is now: ${this.state.scrapedArticles}`)
         API.saveArticle(
@@ -64,6 +62,7 @@ class Articles extends Component {
             .catch(err => console.log(err));
     };
 
+    // delete one article indicated by the id passed in 
     deleteArticle = id => {
         console.log(`*** in deleteArticle, the value of savedArticles is now: ${this.state.savedArticles}`)
         API.deleteArticle(id)
@@ -73,6 +72,7 @@ class Articles extends Component {
             .catch(err => console.log(err));
     };
 
+    // handle the form search button to kick off the search to the NYT
     handleSearchSubmit = event => {
         event.preventDefault();
         API.getNewArticles({
@@ -82,12 +82,12 @@ class Articles extends Component {
         })
             .then(res => {
                 let newArticles = []
-                console.log("***** got back the following from the API call to get artciles: \n" + JSON.stringify(res))
                 res.data.response.docs.map((doc, index) => {
                     if (index < 5) {
                         console.log(`===> ${doc.snippet}  :  ${doc.web_url} : ${doc.pub_date}`)
                         newArticles.push({ title: doc.snippet, url: doc.web_url, date: doc.pub_date })
                     }
+                    return res
                 })
                 this.setState({ scrapedArticles: newArticles })
                 console.log(`*** the value of scrapedArticles should be: ${JSON.stringify(newArticles)}`)
