@@ -1,1 +1,4 @@
 # NYTReactSearch
+
+## Technologies used
+* React
